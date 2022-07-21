@@ -5,6 +5,10 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const Employee = require("./lib/employee");
 
+let managerPerms = true;
+let teamList = [];
+
+
 const selectEmployee = [
     {
         type: "list",
@@ -101,3 +105,20 @@ const questions = {
         }
     ]
 };
+
+function addNewEmployee() {
+    inquirer.prompt(selectEmployee)
+    .then(answer => {
+        if (answer.memberType === "Manager") {
+        if (canAddManager) {inquirer.prompt(questions.Manager)
+        .then(answer => {
+
+    const manager = new Manager
+        (
+            answer.name,
+            answer.id,
+            answer.email,
+            answer.officeNumber
+        );
+
+        })}}})};
