@@ -1,3 +1,5 @@
+// Linking packages and classes 
+
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
@@ -5,18 +7,21 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const Employee = require("./lib/employee");
 
+// define needed variables 
 let managerPerms = true;
 let teamList = [];
 
-
+// prompt for which employee to add to array
 const selectEmployee = [
     {
         type: "list",
-        name: "selectEmployee",
+        name: "employeeRole",
         message: "Please choose a role for the employee",
         choices: ["Manager", "Engineer", "Intern"],
     }
 ];
+
+// questions for each employee based off inqurier documentation 
 const questions = {
     Manager: [
         {
@@ -109,16 +114,56 @@ const questions = {
 function addNewEmployee() {
     inquirer.prompt(selectEmployee)
     .then(answer => {
-        if (answer.memberType === "Manager") {
-        if (canAddManager) {inquirer.prompt(questions.Manager)
+        if (answer.employeeRole === "Manager") {
+       inquirer.prompt(questions.Manager)
         .then(answer => {
 
     const manager = new Manager
-        (
-            answer.name,
+        (   answer.name,
             answer.id,
             answer.email,
             answer.officeNumber
         );
 
-        })}}})};
+    teamList.push(manager)
+    if (answer.addNew === "yes") {
+        addNewEmployee();
+         } else {
+        generate();
+        } 
+    })
+
+    } else if (answer.employeeRole === "Engineer") {
+    inquirer.prompt(questions.Engineer)
+    .then(answer => {
+
+     const engineer = new Engineer
+       (answer.name,
+        answer.id,
+        answer.email,
+        answer.github
+        
+        );
+
+    team.push(engineer);
+        if (answer.addNew === "yes") {
+            addNewMember();
+        } else {
+            generate();
+        };
+    });
+}})
+};
+
+
+
+function generate(data) {
+    fs.writeFileSync('index.html', data,function (err) {
+        if (err) {
+          console.log(err);
+      } else {
+        console.log("Your team profile has been successfully created! Please check out the index.html")
+    }
+})};
+
+addNewEmployee()
