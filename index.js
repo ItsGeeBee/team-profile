@@ -6,9 +6,9 @@ const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const Employee = require("./lib/employee");
+const generateTeamPage = require('./lib/HTMLtemplate.js');
 
 // define needed variables 
-let managerPerms = true;
 let teamList = [];
 
 // prompt for which employee to add to array
@@ -141,11 +141,31 @@ function addNewEmployee() {
        (answer.name,
         answer.id,
         answer.email,
-        answer.github
+        answer.school
         
         );
 
-    team.push(engineer);
+    teamList.push(engineer);
+    console.log(teamList);
+        if (answer.addNew === "yes") {
+            addNewMember();
+        } else {
+            generate();
+        };
+    })
+} else if (answer.employeeRole === "Intern") {
+    inquirer.prompt(questions.Intern)
+    .then(answer => {
+
+     const intern = new Intern
+       (answer.name,
+        answer.id,
+        answer.email,
+        answer.github
+        
+        );
+    teamList.push(intern);
+    console.log(teamList);
         if (answer.addNew === "yes") {
             addNewMember();
         } else {
@@ -155,10 +175,8 @@ function addNewEmployee() {
 }})
 };
 
-
-
-function generate(data) {
-    fs.writeFileSync('index.html', data,function (err) {
+function generate() {
+    fs.writeFileSync('./dist/index.html',generateTeamPage(teamList),function (err) {
         if (err) {
           console.log(err);
       } else {
