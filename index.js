@@ -118,17 +118,12 @@ function addNewEmployee() {
        inquirer.prompt(questions.Manager)
         .then(answer => {
 
-    const manager = new Manager
-        (   answer.name,
-            answer.id,
-            answer.email,
-            answer.officeNumber
-        );
-
+    const manager = new Manager(answer.name, answer.id, answer.email,answer.officeNumber);
+    
     teamList.push(manager)
     if (answer.addNew === "yes") { addNewEmployee();
-         } else {
-        generate();
+     } else {
+     generate();
         } 
     })
 
@@ -136,18 +131,12 @@ function addNewEmployee() {
     inquirer.prompt(questions.Engineer)
     .then(answer => {
 
-     const engineer = new Engineer
-       (answer.name,
-        answer.id,
-        answer.email,
-        answer.github
-        
-        );
+     const engineer = new Engineer (answer.name, answer.id, answer.email,answer.github);
 
     teamList.push(engineer);
-        if (answer.addNew === "yes") { addNewEmployee();
-        } else {
-            generate();
+    if (answer.addNew === "yes") { addNewEmployee();
+    } else {
+        generate();
         }        
     })
 } else if (answer.employeeRole === "Intern") {
@@ -155,16 +144,12 @@ function addNewEmployee() {
     .then(answer => {
 
      const intern = new Intern
-       (answer.name,
-        answer.id,
-        answer.email,
-        answer.school
-        
-        );
+       (answer.name, answer.id, answer.email, answer.school);
+
     teamList.push(intern);
         if (answer.addNew === "yes") {addNewEmployee();
-        } else {
-            generate();
+    } else {
+        generate();
         };
     });
 }})
