@@ -14,13 +14,13 @@ it("Sets employee name", () => {
 
 it("Sets employee id", () => {
     const testID = 100;
-    const employee = new Employee("Foo", testID);
+    const employee = new Employee("Brown", testID);
     expect(employee.id).toBe(testID);
   });
   
 it("Can set email via constructor argument", () => {
     const testEmail = "test@test.com";
-    const employee = new Employee("Foo", 1, testEmail);
+    const employee = new Employee("Brown", 1, testEmail);
     expect(employee.email).toBe(testEmail);
   });
   
@@ -32,13 +32,13 @@ it("Can get name via getName()", () => {
   
 it("Can get id via getId()", () => {
     const testID = 100;
-    const employee = new Employee("Foo", testID);
+    const employee = new Employee("Brown", testID);
     expect(employee.getId()).toBe(testID);
   });
   
 it("Can get email via getEmail()", () => {
     const testEmail = "test@test.com";
-    const employee = new Employee("Foo", 1, testEmail);
+    const employee = new Employee("Brown", 1, testEmail);
     expect(employee.getEmail()).toBe(testEmail);
   });
   

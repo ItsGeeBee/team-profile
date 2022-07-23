@@ -126,8 +126,7 @@ function addNewEmployee() {
         );
 
     teamList.push(manager)
-    if (answer.addNew === "yes") {
-        addNewEmployee();
+    if (answer.addNew === "yes") { addNewEmployee();
          } else {
         generate();
         } 
@@ -141,17 +140,15 @@ function addNewEmployee() {
        (answer.name,
         answer.id,
         answer.email,
-        answer.school
+        answer.github
         
         );
 
     teamList.push(engineer);
-    console.log(teamList);
-        if (answer.addNew === "yes") {
-            addNewMember();
+        if (answer.addNew === "yes") { addNewEmployee();
         } else {
             generate();
-        };
+        }        
     })
 } else if (answer.employeeRole === "Intern") {
     inquirer.prompt(questions.Intern)
@@ -161,13 +158,11 @@ function addNewEmployee() {
        (answer.name,
         answer.id,
         answer.email,
-        answer.github
+        answer.school
         
         );
     teamList.push(intern);
-    console.log(teamList);
-        if (answer.addNew === "yes") {
-            addNewMember();
+        if (answer.addNew === "yes") {addNewEmployee();
         } else {
             generate();
         };
